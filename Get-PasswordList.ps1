@@ -1,9 +1,9 @@
-# Script de crÈation de dictionnaire de mots de passe en utilisant des informations (Guessing)
+# Script de cr√©ation de dictionnaire de mots de passe en utilisant des informations (Guessing)
 
 function Get-PwdListInteractive {
 
-    Write-Host "`r`n[+] InsÈrez les informations sur la victime pour crÈer un dictionnaire"
-    Write-Host "[+] Si vous ne connaissez pas toutes les informations, appuyez simplement sur EntrÈe lorsque vous Ítes invitÈ ! ;)`r`n"
+    Write-Host "`r`n[+] Ins√©rez les informations sur la victime pour cr√©er un dictionnaire"
+    Write-Host "[+] Si vous ne connaissez pas toutes les informations, appuyez simplement sur Entr√©e lorsque vous √™tes invit√© ! ;)`r`n"
 
     $Global:profile = [PSCustomObject]@{
 	
@@ -27,11 +27,11 @@ function Get-PwdListInteractive {
 
 	}
 	
-	# PrÈnom
-	$profile.Prenom = (Read-Host "> PrÈnom").ToLower()
+	# Pr√©nom
+	$profile.Prenom = (Read-Host "> Pr√©nom").ToLower()
     while ($profile.Prenom.Length -eq 0 -or $profile.Prenom.Trim() -eq "") {
-        Write-Host "`r`n[-] Vous devez entrer au moins un prÈnom !"
-        $profile.Prenom = (Read-Host "> PrÈnom").ToLower()
+        Write-Host "`r`n[-] Vous devez entrer au moins un pr√©nom !"
+        $profile.Prenom = (Read-Host "> Pr√©nom").ToLower()
     }
 	
 	# Nom de famille
@@ -48,8 +48,8 @@ function Get-PwdListInteractive {
         $profile.Date = Read-Host "> Date de naissance (JJMMAAAA)"
     }
 
-    # PrÈnom du conjoint
-    $profile.partner = (Read-Host "> PrÈnom du conjoint").ToLower()
+    # Pr√©nom du conjoint
+    $profile.partner = (Read-Host "> Pr√©nom du conjoint").ToLower()
 
 	# Surnom du conjoint
     $profile.Surnom_partner = (Read-Host "> Surnom du conjoint").ToLower()
@@ -62,8 +62,8 @@ function Get-PwdListInteractive {
         $profile.Date_Partner = Read-Host "> Date de naissance du conjoint (JJMMAAAA)"
     }
 
-    # PrÈnom de l'enfant
-    $profile.Enfant = (Read-Host "> PrÈnom de l'enfant").ToLower()
+    # Pr√©nom de l'enfant
+    $profile.Enfant = (Read-Host "> Pr√©nom de l'enfant").ToLower()
 
     # Surnom de l'enfant
     $profile.Surnom_Enfant = (Read-Host "> Surnom de l'enfant").ToLower()
@@ -84,22 +84,22 @@ function Get-PwdListInteractive {
 
 
     # Mots en plus
-    $profile.Mots = (Read-Host "> Souhaitez-vous ajouter quelques mots clÈs concernant la victime ? O/[N]").ToLower()
+    $profile.Mots = (Read-Host "> Souhaitez-vous ajouter quelques mots cl√©s concernant la victime ? O/[N]").ToLower()
     if ($profile.Mots -eq "o"){
-        $profile.Mots = ((Read-Host "> Veuillez saisir les mots, sÈparÈs par une virgule. [ex.:hacker,juice,black], les espaces seront supprimÈs").ToLower()).replace(" ","")
+        $profile.Mots = ((Read-Host "> Veuillez saisir les mots, s√©par√©s par une virgule. [ex.:hacker,juice,black], les espaces seront supprim√©s").ToLower()).replace(" ","")
         $profile.Mots = $profile.Mots.split(",") 
         }
             Else {$profile.Mots = ''}
 
-    # CaractËres spÈciaux
-    $profile.Special = (Read-Host "> Voulez-vous ajouter des caractËres spÈciaux ‡ la fin des mots ? O/[N]").ToLower()
+    # Caract√®res sp√©ciaux
+    $profile.Special = (Read-Host "> Voulez-vous ajouter des caract√®res sp√©ciaux √† la fin des mots ? O/[N]").ToLower()
     if ($profile.Special -eq "o"){
         $profile.Special = "o" 
         }
             Else {$profile.Special = ''}
 
-    # Chiffres alÈatoires
-    $profile.Chiffres = (Read-Host "> Voulez-vous ajouter des chiffres alÈatoires ‡ la fin des mots ? O/[N]").ToLower()
+    # Chiffres al√©atoires
+    $profile.Chiffres = (Read-Host "> Voulez-vous ajouter des chiffres al√©atoires √† la fin des mots ? O/[N]").ToLower()
     if ($profile.Chiffres -eq "o"){
         $profile.Chiffres = "o" 
         }
@@ -113,13 +113,13 @@ function Get-PwdListInteractive {
             Else {$profile.Leet = ''}
 
     # Longueur de mots de passe
-    $profile.Longueur = Read-Host "> Voulez-vous dÈfinir une longueur de mots de passe ? O/[N]"
+    $profile.Longueur = Read-Host "> Voulez-vous d√©finir une longueur de mots de passe ? O/[N]"
     if ($profile.Longueur -eq "o"){
         #Initialisation de la variable globale
         $Global:Mini = ''
-        #Boucle tant que Mini n'est pas nul et que Áa n'est pas un chiffre
+        #Boucle tant que Mini n'est pas nul et que √ßa n'est pas un chiffre
         while ($Global:Mini -eq '') {
-            try {[int]$Global:Mini = Read-Host "> Veuillez saisir la longueur minimale des mots de passe ‡ crÈer"}
+            try {[int]$Global:Mini = Read-Host "> Veuillez saisir la longueur minimale des mots de passe √† cr√©er"}
                         #Boucle si le format n'est pas bon
 	                    catch {
                             Write-Host "`r`n[-] Vous devez entrer un ou plusieurs chiffres pour la longueur minimale !"
@@ -128,9 +128,9 @@ function Get-PwdListInteractive {
 
         #Initialisation de la variable globale
         $Global:Maxi = ''
-        #Boucle tant que Mini n'est pas nul et que Áa n'est pas un chiffre
+        #Boucle tant que Mini n'est pas nul et que √ßa n'est pas un chiffre
         while ($Global:Maxi -eq '') {
-            try {[int]$Global:Maxi = Read-Host "> Veuillez saisir la longueur maximale des mots de passe ‡ crÈer"}
+            try {[int]$Global:Maxi = Read-Host "> Veuillez saisir la longueur maximale des mots de passe √† cr√©er"}
                         #Boucle si le format n'est pas bon
 	                    catch {
                             Write-Host "`r`n[-] Vous devez entrer un ou plusieurs chiffres pour la longueur maximale !"
@@ -138,7 +138,7 @@ function Get-PwdListInteractive {
         }
     }
 
-    Write-host "`r`n[+] Profil crÈÈ avec succËs:`r`n"
+    Write-host "`r`n[+] Profil cr√©√© avec succ√®s:`r`n"
 
     #Affichage des objets s'il y en a
     $profile.PSObject.Properties | ForEach-Object {
@@ -151,7 +151,7 @@ function Get-PwdListInteractive {
                     Write-Host -ForegroundColor Green $_.Value }
     }
 
-    # GÈnÈration du dictionnaire
+    # G√©n√©ration du dictionnaire
     Get-Wordlist -Profil $profile
 }
 
@@ -159,7 +159,7 @@ function Get-Leet {
     
     # Convertir les lettres en chiffres
     Param(
-	[Parameter(Mandatory=$True,HelpMessage="Mots ‡ convertir")]
+	[Parameter(Mandatory=$True,HelpMessage="Mots √† convertir")]
 	$Source = ''
 	);
     
@@ -180,7 +180,7 @@ function Get-Leet {
 
 function Get-Concat {
     
-    # ConcatÈnation
+    # Concat√©nation
     param (
         [Parameter(Mandatory=$True)]
         $Seq,
@@ -232,23 +232,23 @@ function Get-Combi {
 
 function Get-Wordlist {
    
-    # GÈnÈrer la liste de mots de passe en se basant sur les donnÈes du profil
+    # G√©n√©rer la liste de mots de passe en se basant sur les donn√©es du profil
    	Param(
-	[Parameter(Mandatory=$True,HelpMessage="DonnÈes de la victime")]
+	[Parameter(Mandatory=$True,HelpMessage="Donn√©es de la victime")]
 	$Profil = $profile
 	);
     
     # Continue sans affichage en cas d'erreur
     $ErrorActionPreference = "SilentlyContinue"
 
-    #DÈclaration des variables 
-    # CaractËres SpÈciaux
+    #D√©claration des variables 
+    # Caract√®res Sp√©ciaux
     $chars = "!", "@", "#", "$", "%", "&", "*", "+", "=", "?", "_"
-    # Chiffres dÈbut et fin
+    # Chiffres d√©but et fin
     $numfrom = 0
     $numto = 100
     $nums = 0..100
-    # AnnÈes
+    # Ann√©es
     $ans = 1950..2024
 
     # Date d'anniversaire
@@ -277,7 +277,7 @@ function Get-Wordlist {
     $DateEnf_mm = $profile.Date_Enfant.Substring(2,2)
 
 
-    # PremiËre lettre en majuscule
+    # Premi√®re lettre en majuscule
     $TextInfo = (Get-Culture).TextInfo
 
     $Prenom_Up = $TextInfo.ToTitleCase($profile.Prenom)
@@ -296,7 +296,7 @@ function Get-Wordlist {
     $words = $profile.mots + $wordsup
 
 
-    # Inverse les caractËres des mots
+    # Inverse les caract√®res des mots
     $Rev_Prenom = $profile.Prenom[-1..-($s.Length)] -join ''
     $Rev_Prenom_Up = $Prenom_Up[-1..-($s.Length)] -join ''
     $Rev_Nom = $profile.Nom[-1..-($s.Length)] -join ''
@@ -510,7 +510,7 @@ function Get-Wordlist {
     $kombi[15] = @(Get-Combi -Seq $Rev_Prenom -Start $bdss)
     $kombi[15] += @(Get-Combi -Seq $Rev_Prenom -Start $bdss -Special $chars)
 
-    # Si chiffres alÈatoires = OUI ; Ajout de chiffres de 0 ‡ 100
+    # Si chiffres al√©atoires = OUI ; Ajout de chiffres de 0 √† 100
     If ($profile.Chiffres -eq 'o') {
         $kombi[16] = @(Get-Concat -Seq $words -Start $numfrom -Stop $numto)
         $kombi[17] = @(Get-Concat -Seq $kombinaa -Start $numfrom -Stop $numto)
@@ -520,7 +520,7 @@ function Get-Wordlist {
         $kombi[21] = @(Get-Concat -Seq $reverse -Start $numfrom -Stop $numto)
     }
 
-    # Si caractËres spÈciaux = OUI ; Ajout de caractËres spÈciaux
+    # Si caract√®res sp√©ciaux = OUI ; Ajout de caract√®res sp√©ciaux
     If (($profile.Special).Length -eq 3) {
         $kombi[22] = @(Get-Combi -Seq $kombinaa -Start $nums -Special $chars)
         $kombi[23] = @(Get-Combi -Seq $kombinaac -Start $nums -Special $chars)
@@ -530,13 +530,13 @@ function Get-Wordlist {
         $kombi[27] = @(Get-Combi -Seq $reverse -Start $nums -Special $chars)
     }
 
-    # CrÈation de la liste de mots de passe
+    # Cr√©ation de la liste de mots de passe
     $komb_unique = @()
     for ($i = 1; $i -le 27; $i++) {
         $komb_unique += $kombi[$i]
     }
 
-    #Ajout de mots dans la liste prÈcÈdente
+    #Ajout de mots dans la liste pr√©c√©dente
     $List += ($kbds +
             $kbdss +
             $wbdss +
@@ -566,7 +566,7 @@ function Get-Wordlist {
     $List_Uniq += $Leet
     }
 
-    # Si Longueur de mots de passe ; RÈcupÈrer que les mots de passe compris ou Ègals entre les deux valeurs Mini et Maxi
+    # Si Longueur de mots de passe ; R√©cup√©rer que les mots de passe compris ou √©gals entre les deux valeurs Mini et Maxi
     If ($profile.Longueur -eq 'o') {
         $Short_List = @()
         #Boucle pour chaque mot dans la liste
@@ -581,7 +581,7 @@ function Get-Wordlist {
     }
     
 
-    # VÈrifier le chemin, sinon crÈer le dossier
+    # V√©rifier le chemin, sinon cr√©er le dossier
     $FileName = $profile.Prenom + ".txt"
     $Chemin = "C:\Temp\"
 
@@ -589,11 +589,11 @@ function Get-Wordlist {
         New-Item -ItemType Directory $Chemin -Force
     } 
 
-    # CrÈation du dictionnaire de mots de passe
+    # Cr√©ation du dictionnaire de mots de passe
     $List_Uniq | Out-File -FilePath $Chemin$FileName -Encoding utf8
 
 
-    Write-Host -ForegroundColor Green "`r`n[+] Dictionnaire crÈÈ avec succËs.`r`n"
+    Write-Host -ForegroundColor Green "`r`n[+] Dictionnaire cr√©√© avec succ√®s.`r`n"
 }
 
 Get-PwdListInteractive
