@@ -15,7 +15,7 @@ $ErrorActionPreference = "silentlycontinue"
 $Search = Read-Host -Prompt "Quel mot voulez-vous chercher ?"
 
 #Lister tous les fichiers .ps1 et recherche le mot demandé
-$Find = Get-ChildItem -Path "U:\_Scripts\_PowerShell" -Recurse -File -include "*.ps1" | %{Select-String -Path $_.FullName -Pattern $Search}
+$Find = Get-ChildItem -Path "C:\PowerShell" -Recurse -File -include "*.ps1" | %{Select-String -Path $_.FullName -Pattern $Search}
 
 #Export du résultat dans un fichier texte
 $Find | Out-File -LiteralPath $Path
